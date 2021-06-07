@@ -1,0 +1,24 @@
+spring:
+  jpa:
+    database: postgresql
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://localhost:5432/test_spring
+    username: nile
+    password: password
+    driverClassName: org.postgresql.Driver
+  application:
+    name: authen-server
+---
+app:
+  token:
+    secret: mysecret
+    issuer: springdemo
+---
+server:
+  port: 8081
+
+
+
