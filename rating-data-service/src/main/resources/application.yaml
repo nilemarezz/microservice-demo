@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: rating-data-service
+---
+server:
+  port: 8084
