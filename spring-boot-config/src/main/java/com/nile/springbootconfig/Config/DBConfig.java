@@ -8,7 +8,6 @@ import java.util.Map;
 
 @Configuration
 @ConfigurationProperties("db")
-@RefreshScope
 public class DBConfig {
     private String port;
     private String host;
