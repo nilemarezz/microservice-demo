@@ -1,12 +1,14 @@
 package com.nile.springbootconfig.Config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.Map;
 
 @Configuration
 @ConfigurationProperties("db")
+@RefreshScope
 public class DBConfig {
     private String port;
     private String host;

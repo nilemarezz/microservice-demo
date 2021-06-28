@@ -6,4 +6,7 @@ db:
   host: 192.168.1.1
 ---
 #call the application-test config file
-spring.profiles.active: test
+#spring.profiles.active: test
+
+#call config at config server
+#spring.cloud.config.uri: http://localhost:8888

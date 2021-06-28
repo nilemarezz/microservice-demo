@@ -1,6 +1,6 @@
 db:
   users:
-      username: from git repo config
+      username: from git repo config test1
       password: rootpass
   port: 3306
   host: 192.168.1.1
