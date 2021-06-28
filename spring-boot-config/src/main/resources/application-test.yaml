@@ -1,0 +1,6 @@
+db:
+  users:
+      username: root
+      password: rootpass
+  port: 3306
+  host: test

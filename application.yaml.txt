@@ -1,0 +1,9 @@
+db:
+  users:
+      username: root
+      password: rootpass
+  port: 3306
+  host: 192.168.1.1
+---
+#call the application-test config file
+spring.profiles.active: test
