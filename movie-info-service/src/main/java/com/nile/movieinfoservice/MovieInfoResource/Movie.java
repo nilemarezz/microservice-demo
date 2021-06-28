@@ -1,15 +1,28 @@
 package com.nile.movieinfoservice.MovieInfoResource;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Movie {
     private int id;
-    private String name;
+    @JsonProperty("original_title")
+    private String originalTitle;
+    @JsonProperty("overview")
+    private String desciption;
 
     public Movie() {
     }
 
-    public Movie(int id, String name) {
+    public Movie(int id, String originalTitle, String desciption) {
         this.id = id;
-        this.name = name;
+        this.originalTitle = originalTitle;
+    }
+
+    public String getDesciption() {
+        return desciption;
+    }
+
+    public void setDesciption(String desciption) {
+        this.desciption = desciption;
     }
 
     public int getId() {
@@ -20,11 +33,11 @@ public class Movie {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getOriginalTitle() {
+        return originalTitle;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setOriginalTitle(String originalTitle) {
+        this.originalTitle = originalTitle;
     }
 }

@@ -4,3 +4,6 @@ spring:
 ---
 server:
   port: 8083
+---
+key:
+  api_key_move: 65eb402c00f33f1dbc2989a36f115039

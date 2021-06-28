@@ -1,6 +1,8 @@
 package com.nile.moviecatalogservice.CatalogResource;
 
-
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.nile.moviecatalogservice.service.CatalogItemService;
+import com.nile.moviecatalogservice.service.UserRatingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,22 +19,30 @@ import java.util.List;
 @RequestMapping("/catalog")
 public class CatalogController {
 
+
     @Autowired
-    RestTemplate restTemplate;
+    CatalogItemService catalogItemService;
+
+    @Autowired
+    UserRatingService userRatingService;
 
     @GetMapping("/{userID}")
-    public List<CatalogItem> getCatalogs(@PathVariable(name = "userID") String userID){
+    public List<CatalogItem> getCatalogs(@PathVariable(name = "userID") String userID) {
 
         // get all reated movie ID
 
         List<CatalogItem> catalogItems = new ArrayList<>();
-        UserRating ratings = restTemplate.getForObject("http://rating-data-service/rating/user/"+userID , UserRating.class);
-        for (Rating rating : ratings.getUserRating()){
-            Movie movie = restTemplate.getForObject("http://movie-info-service/movie/" + rating.getId() , Movie.class);
-            catalogItems.add(new CatalogItem(movie.getName() , "des" , rating.getRating()));
+        UserRating ratings = userRatingService.getUserRating(userID);
+        for (Rating rating : ratings.getUserRating()) {
+            CatalogItem item = catalogItemService.getCatalogItem(rating);
+            catalogItems.add(new CatalogItem(item.getName() , item.getDesc() , rating.getRating()));
         }
         return catalogItems;
         // foe each movie id , call movie info
 
     }
+
+
+
+
 }
